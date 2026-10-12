@@ -1,0 +1,23 @@
+<resources>
+<string name="app_name">Aviasales</string>
+
+<string name="label_from">Город вылета</string>
+<string name="label_to">Город прилёта</string>
+<string name="hint_date_from">Дата вылета</string>
+<string name="hint_date_to">Дата прилёта</string>
+<string name="hint_adults">Взрослые</string>
+<string name="hint_children">Дети</string>
+<string name="hint_infants">Младенцы</string>
+<string name="btn_search">Найти билеты</string>
+
+<string-array name="cities">
+    <item>Москва</item>
+    <item>Санкт-Петербург</item>
+    <item>Иркутск</item>
+    <item>Новосибирск</item>
+    <item>Екатеринбург</item>
+    <item>Казань</item>
+    <item>Сочи</item>
+    <item>Владивосток</item>
+</string-array>
+</resources>
