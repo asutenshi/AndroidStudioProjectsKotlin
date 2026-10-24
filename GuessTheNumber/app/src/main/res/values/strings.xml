@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GuessTheNumber</string>
+    <string name="range_title">Загадайте число</string>
+    <string name="min_hint">От</string>
+    <string name="max_hint">До</string>
+    <string name="start">Начать</string>
+    <string name="range_error">Введите границы диапазона, где «от» меньше «до»</string>
+    <string name="question">Ваше число больше %1$d?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="result">Ваше число: %1$d</string>
+    <string name="restart">Заново</string>
+</resources>
