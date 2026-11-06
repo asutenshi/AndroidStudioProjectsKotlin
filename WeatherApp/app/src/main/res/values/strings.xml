@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+
+    <string name="refresh">Обновить</string>
+    <string name="humidity">Влажность</string>
+    <string name="pressure">Давление</string>
+    <string name="wind">Ветер</string>
+    <string name="clouds">Облачность</string>
+    <string name="feels_like">Ощущается как</string>
+    <string name="loading">Загрузка…</string>
+    <string name="error_no_network">Нет сети. Проверьте подключение к интернету</string>
+    <string name="error_bad_key">Неверный API-ключ. Укажите ключ в secrets.properties</string>
+    <string name="error_city_not_found">Город не найден</string>
+    <string name="error_empty">Пустой ответ сервера</string>
+    <string name="error_generic">Ошибка загрузки (код %1$d)</string>
+
+    <string-array name="cities">
+        <item>Irkutsk</item>
+        <item>Moscow</item>
+        <item>Saint Petersburg</item>
+        <item>Novosibirsk</item>
+        <item>Vladivostok</item>
+        <item>London</item>
+        <item>New York</item>
+        <item>Tokyo</item>
+    </string-array>
+</resources>
