@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     private val columns = 4
 
+    private var firstCard: ImageView? = null
+    private var openCardsCount = 0
+    private var cardsLeft = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         layout.orientation = LinearLayout.VERTICAL
 
         val images = (faceImages + faceImages).shuffled()
+        cardsLeft = images.size
 
         val padding = (6 * resources.displayMetrics.density).toInt()
 
@@ -48,10 +54,10 @@ class MainActivity : AppCompatActivity() {
 
         for ((index, image) in images.withIndex()) {
             val card = ImageView(this).apply {
-                setImageResource(backImage) // изначально рубашка
+                setImageResource(backImage)
                 layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
                 setPadding(padding, padding, padding, padding)
-                tag = image // в теге хранится картинка лицевой стороны
+                tag = image
                 setOnClickListener(colorListener)
             }
             rows[index / columns].addView(card)
@@ -68,15 +74,48 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun flipWithDelay(card: ImageView) {
-        card.isClickable = false
-        card.setImageResource(card.tag as Int)
+    private suspend fun checkPair(first: ImageView, second: ImageView) {
         delay(1000)
-        card.setImageResource(backImage)
-        card.isClickable = true
+        if (first.tag == second.tag) {
+            first.visibility = View.INVISIBLE
+            second.visibility = View.INVISIBLE
+            cardsLeft -= 2
+        } else {
+            first.setImageResource(backImage)
+            second.setImageResource(backImage)
+            first.isClickable = true
+            second.isClickable = true
+        }
+        firstCard = null
+        openCardsCount = 0
+
+        if (cardsLeft == 0) showWin()
+    }
+
+    private fun showWin() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.win_title)
+            .setMessage(R.string.win_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.play_again) { _, _ -> recreate() }
+            .show()
     }
 
     private val colorListener = View.OnClickListener { v ->
-        lifecycleScope.launch { flipWithDelay(v as ImageView) }
+        val card = v as ImageView
+        when (openCardsCount) {
+            0 -> {
+                card.setImageResource(card.tag as Int)
+                card.isClickable = false
+                firstCard = card
+                openCardsCount = 1
+            }
+            1 -> {
+                card.setImageResource(card.tag as Int)
+                card.isClickable = false
+                openCardsCount = 2
+                lifecycleScope.launch { checkPair(firstCard!!, card) }
+            }
+        }
     }
 }
