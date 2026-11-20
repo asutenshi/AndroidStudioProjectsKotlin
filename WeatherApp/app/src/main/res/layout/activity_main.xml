@@ -11,6 +11,18 @@
             type="com.example.weatherapp.WeatherData" />
 
         <variable
+            name="fahrenheit"
+            type="boolean" />
+
+        <variable
+            name="showWindDirection"
+            type="boolean" />
+
+        <variable
+            name="offline"
+            type="boolean" />
+
+        <variable
             name="loading"
             type="boolean" />
 
@@ -47,6 +59,41 @@
                 android:text="@string/refresh" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/temp_scale"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/scaleGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioCelsius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/celsius" />
+
+            <RadioButton
+                android:id="@+id/radioFahrenheit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/fahrenheit" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/windDirectionCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/show_wind_direction" />
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@{error}"
+            android:text="@{offline ? error + `\n` + @string/offline_note : error}"
             android:textColor="?attr/colorError"
             android:textSize="16sp"
             android:visibility="@{error == null ? View.GONE : View.VISIBLE}" />
@@ -82,7 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{weather.temp + `°C`}"
+                android:text="@{weather.tempText(fahrenheit)}"
                 android:textSize="56sp"
                 tools:text="-3.5°C" />
 
@@ -97,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{@string/feels_like + `: ` + weather.feelsLike + `°C`}"
+                android:text="@{@string/feels_like + `: ` + weather.feelsLikeText(fahrenheit)}"
                 android:textSize="16sp"
                 tools:text="Ощущается как: -7.0°C" />
 
@@ -128,6 +175,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:contentDescription="@string/wind"
+                    android:visibility="@{showWindDirection ? View.VISIBLE : View.GONE}"
                     android:rotation="@{weather.windRotation}"
                     android:src="@drawable/ic_arrow" />
 
@@ -135,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="@{@string/wind + `: ` + weather.windSpeed + ` м/с`}"
+                    android:text="@{@string/wind + `: ` + weather.windSpeed + ` м/с` + (showWindDirection ? `, ` + @stringArray/compass[weather.compassIndex] + ` (` + weather.windDeg + `°)` : ``)}"
                     android:textSize="16sp"
                     tools:text="Ветер: 3.0 м/с" />
             </LinearLayout>

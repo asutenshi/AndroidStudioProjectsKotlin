@@ -44,6 +44,15 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) = Unit
         }
         binding.refreshButton.setOnClickListener { loadWeather() }
+
+        binding.fahrenheit = binding.radioFahrenheit.isChecked
+        binding.showWindDirection = binding.windDirectionCheck.isChecked
+        binding.scaleGroup.setOnCheckedChangeListener { _, checkedId ->
+            binding.fahrenheit = checkedId == R.id.radioFahrenheit
+        }
+        binding.windDirectionCheck.setOnCheckedChangeListener { _, checked ->
+            binding.showWindDirection = checked
+        }
     }
 
     private fun loadWeather() {
@@ -52,13 +61,16 @@ class MainActivity : AppCompatActivity() {
         loadJob = lifecycleScope.launch {
             binding.loading = true
             binding.error = null
+            binding.offline = false
             try {
                 val data = withContext(Dispatchers.IO) {
                     WeatherApi.load(city, BuildConfig.OPENWEATHER_API_KEY)
                 }
                 binding.weather = data
             } catch (e: WeatherException) {
-                binding.weather = null
+                val local = withContext(Dispatchers.IO) { LocalWeather.load(this@MainActivity, city) }
+                binding.weather = local
+                binding.offline = local != null
                 binding.error = errorText(e)
             }
             binding.loading = false

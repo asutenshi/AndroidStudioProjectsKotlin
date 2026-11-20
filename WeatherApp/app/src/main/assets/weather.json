@@ -1,0 +1,170 @@
+{
+  "Irkutsk": {
+    "name": "Irkutsk",
+    "main": {
+      "temp": -8.4,
+      "feels_like": -13.1,
+      "humidity": 78,
+      "pressure": 1024
+    },
+    "weather": [
+      {
+        "description": "облачно с прояснениями"
+      }
+    ],
+    "wind": {
+      "speed": 2.6,
+      "deg": 300
+    },
+    "clouds": {
+      "all": 40
+    }
+  },
+  "Moscow": {
+    "name": "Moscow",
+    "main": {
+      "temp": 1.2,
+      "feels_like": -2.8,
+      "humidity": 86,
+      "pressure": 1008
+    },
+    "weather": [
+      {
+        "description": "пасмурно"
+      }
+    ],
+    "wind": {
+      "speed": 4.1,
+      "deg": 225
+    },
+    "clouds": {
+      "all": 100
+    }
+  },
+  "Saint Petersburg": {
+    "name": "Saint Petersburg",
+    "main": {
+      "temp": 3.5,
+      "feels_like": 0.2,
+      "humidity": 91,
+      "pressure": 1003
+    },
+    "weather": [
+      {
+        "description": "небольшой дождь"
+      }
+    ],
+    "wind": {
+      "speed": 5.3,
+      "deg": 250
+    },
+    "clouds": {
+      "all": 90
+    }
+  },
+  "Novosibirsk": {
+    "name": "Novosibirsk",
+    "main": {
+      "temp": -12.0,
+      "feels_like": -17.5,
+      "humidity": 70,
+      "pressure": 1030
+    },
+    "weather": [
+      {
+        "description": "ясно"
+      }
+    ],
+    "wind": {
+      "speed": 3.0,
+      "deg": 180
+    },
+    "clouds": {
+      "all": 5
+    }
+  },
+  "Vladivostok": {
+    "name": "Vladivostok",
+    "main": {
+      "temp": 2.0,
+      "feels_like": -1.9,
+      "humidity": 55,
+      "pressure": 1019
+    },
+    "weather": [
+      {
+        "description": "малооблачно"
+      }
+    ],
+    "wind": {
+      "speed": 6.4,
+      "deg": 330
+    },
+    "clouds": {
+      "all": 20
+    }
+  },
+  "London": {
+    "name": "London",
+    "main": {
+      "temp": 11.3,
+      "feels_like": 10.1,
+      "humidity": 81,
+      "pressure": 1012
+    },
+    "weather": [
+      {
+        "description": "переменная облачность"
+      }
+    ],
+    "wind": {
+      "speed": 4.6,
+      "deg": 200
+    },
+    "clouds": {
+      "all": 75
+    }
+  },
+  "New York": {
+    "name": "New York",
+    "main": {
+      "temp": 7.8,
+      "feels_like": 5.2,
+      "humidity": 52,
+      "pressure": 1021
+    },
+    "weather": [
+      {
+        "description": "ясно"
+      }
+    ],
+    "wind": {
+      "speed": 5.1,
+      "deg": 320
+    },
+    "clouds": {
+      "all": 0
+    }
+  },
+  "Tokyo": {
+    "name": "Tokyo",
+    "main": {
+      "temp": 16.4,
+      "feels_like": 15.7,
+      "humidity": 68,
+      "pressure": 1016
+    },
+    "weather": [
+      {
+        "description": "легкий дождь"
+      }
+    ],
+    "wind": {
+      "speed": 3.4,
+      "deg": 45
+    },
+    "clouds": {
+      "all": 60
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import org.json.JSONObject
+import java.util.Locale
 
 data class WeatherData(
     val city: String,
@@ -17,7 +18,19 @@ data class WeatherData(
 
     val cloudAlpha: Float get() = 0.15f + clouds * 0.0085f
 
+    val compassIndex: Int get() = ((windDeg % 360 + 360) % 360 + 22) / 45 % 8
+
+    fun tempText(fahrenheit: Boolean): String = formatTemp(temp, fahrenheit)
+
+    fun feelsLikeText(fahrenheit: Boolean): String = formatTemp(feelsLike, fahrenheit)
+
     companion object {
+        fun celsiusToFahrenheit(c: Double): Double = c * 9.0 / 5.0 + 32.0
+
+        fun formatTemp(celsius: Double, fahrenheit: Boolean): String =
+            if (fahrenheit) String.format(Locale.US, "%.1f°F", celsiusToFahrenheit(celsius))
+            else String.format(Locale.US, "%.1f°C", celsius)
+
         fun fromJson(json: String): WeatherData {
             val o = JSONObject(json)
             val main = o.getJSONObject("main")

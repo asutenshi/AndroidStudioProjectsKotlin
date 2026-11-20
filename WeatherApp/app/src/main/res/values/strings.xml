@@ -7,12 +7,28 @@
     <string name="wind">Ветер</string>
     <string name="clouds">Облачность</string>
     <string name="feels_like">Ощущается как</string>
+    <string name="temp_scale">Шкала температуры</string>
+    <string name="celsius">Цельсий (°C)</string>
+    <string name="fahrenheit">Фаренгейт (°F)</string>
+    <string name="show_wind_direction">Показывать направление ветра</string>
+    <string name="offline_note">Показаны данные из локального JSON-файла</string>
     <string name="loading">Загрузка…</string>
     <string name="error_no_network">Нет сети. Проверьте подключение к интернету</string>
     <string name="error_bad_key">Неверный API-ключ. Укажите ключ в secrets.properties</string>
     <string name="error_city_not_found">Город не найден</string>
     <string name="error_empty">Пустой ответ сервера</string>
     <string name="error_generic">Ошибка загрузки (код %1$d)</string>
+
+    <string-array name="compass">
+        <item>северный</item>
+        <item>северо-восточный</item>
+        <item>восточный</item>
+        <item>юго-восточный</item>
+        <item>южный</item>
+        <item>юго-западный</item>
+        <item>западный</item>
+        <item>северо-западный</item>
+    </string-array>
 
     <string-array name="cities">
         <item>Irkutsk</item>
